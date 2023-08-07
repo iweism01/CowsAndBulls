@@ -1,0 +1,257 @@
+<html>
+    <script type="text/javascript" src="foo.js"></script>
+    <script>
+        let secret;
+        let wordLength;
+        let range;
+
+        let compWordLength;
+        let digitRange;
+        let computerGuess;
+        let numberSet;
+        function startGame() {;
+            // show input boxes
+            showGuessDiv()
+            // clean results
+            let resultLabel = document.getElementById('result');
+            resultLabel.innerHTML = '';
+            // disable dropdowns
+            document.getElementById("length").disabled=true
+            document.getElementById("range").disabled=true
+
+            wordLength = parseInt(document.getElementById('length').value);
+            range = parseInt(document.getElementById('range').value);
+
+            secret = generateRandomNumber(wordLength, range);
+            document.getElementById('secret').innerHTML = secret;
+            
+
+             // Get the button element by its ID
+            let startBtn = document.getElementById('startBtn');
+
+            // Hide the button by setting its display property to 'none'
+            startBtn.style.display = 'none';
+            document.getElementById('guessDiv').hidden = false;
+            document.getElementById('compResults').innerHTML = '';
+            document.getElementById('labelsDiv').innerHTML = '';
+        }
+        function evaluation() {
+            let userGuess = document.getElementById('guess').value
+            if (!validateGuess(userGuess, wordLength, range)) {
+                errorLabel.innerHTML = `${userGuess} is invalid. Guess again`;
+                // Clean input text box
+                document.getElementById('guess').value = '';
+                return;
+            }
+            // clean error message 
+            document.getElementById('errorLabel').innerHTML = '';
+            let result = eval2(secret, userGuess);
+
+
+            let divElement = document.getElementById('labelsDiv');
+            var newlabel = document.createElement("Label");
+
+            newlabel.innerHTML = `Guess: ${userGuess}, Hits: ${result.hits}, Perfect Hits: ${result['perfect hits']}`;
+            divElement.appendChild(newlabel);
+            let newLine = document.createElement('br');
+            divElement.appendChild(newLine);
+
+            document.getElementById('guess').value = '';
+            if (result['perfect hits'] === wordLength) {
+                let resultLabel = document.getElementById('result');
+                resultLabel.innerHTML = "Congratulations! You won!";
+                // show start game button
+                document.getElementById('startBtn').style.display = 'block';
+                
+                // show length range dropdowns
+                document.getElementById("length").disabled=false
+                document.getElementById("range").disabled=false
+
+                document.getElementById('secret').innerHTML = '';
+                document.getElementById('guessDiv').hidden = true;
+            }
+        }
+        function compStartGame() {
+            // clean input boxes
+            document.getElementById('hits').value = '';
+            document.getElementById('perfectHits').value = ''
+
+            document.getElementById('computerGuess').innerHTML = '';
+            
+            // disable dropdowns
+            document.getElementById("numberLength").disabled=true
+            document.getElementById("digitRange").disabled=true
+
+            compWordLength = parseInt(document.getElementById('numberLength').value);
+            digitRange= parseInt(document.getElementById('digitRange').value);
+
+            // initialize set
+            numberSet = initSet(compWordLength, digitRange);
+
+            computerGuess = makeGuess(numberSet);
+
+            let compDivElement = document.getElementById('computerGuess');
+            let compNewlabel = document.createElement("compNewLabel");
+
+            compNewlabel.innerHTML = `Computer Guess: ${computerGuess}`;
+            compDivElement.appendChild(compNewlabel);
+
+            let newLine = document.createElement('br');
+
+            compDivElement.appendChild(newLine);
+
+            // Get the button element by its ID
+            let startingButton = document.getElementById('startingButton');
+
+            showHitsDiv();
+
+            // Hide the button by setting its display property to 'none'
+            startingButton.style.display = 'none';
+            document.getElementById('hitsDiv').hidden = false;
+            document.getElementById('compResults').innerHTML = '';
+        }
+        function evaluateGuess() {
+            let compDivElement = document.getElementById('computerGuess');
+            let compNewlabel = document.createElement("compNewLabel");
+
+            let hits = parseInt(document.getElementById('hits').value);
+            let perfectHits = parseInt(document.getElementById('perfectHits').value);
+
+            if (perfectHits === 4) {
+                let resultLabel = document.getElementById('compResults');
+                resultLabel.innerHTML = "The computer guessed your number !";
+                // Hide the hitsDiv when the user wins
+                document.getElementById('hitsDiv').style.display = 'none';
+        
+                // Show the start game button
+                document.getElementById('startingButton').style.display = 'block';
+            }
+
+            numberSet = filterSet(computerGuess, hits, perfectHits, numberSet);
+
+            // make guess
+            computerGuess = makeGuess(numberSet);
+
+            compNewlabel.innerHTML = `Computer Guess: ${computerGuess}`;
+            compDivElement.appendChild(compNewlabel);
+
+            let newLine = document.createElement('br');
+
+            compDivElement.appendChild(newLine);
+        }
+        function showHitsDiv() {
+            document.getElementById('hitsDiv').style.display = 'block';
+        }
+        function showGuessDiv() {
+            document.getElementById('guessDiv').style.display = 'block';
+        }
+        function playerStartGame() {
+            // hide starting button
+            let oneMoreStartingButton = document.getElementById('oneMoreStartingButton');
+            oneMoreStartingButton.style.display = 'none';
+            document.getElementById("player").disabled=true
+
+            // Get the selected option from the dropdown
+            const selectedOption = parseInt(document.getElementById('player').value);
+
+            // Call the driverFunction and get the result
+            const result = driverFunction(selectedOption);
+
+            // Get a reference to the output div in the HTML
+            const outputElement = document.getElementById('output');
+
+            // Set the content of the output div to the result
+            outputElement.innerHTML = result;
+        }
+        function restartGame() {
+            // show start game button
+            let oneMoreStartingButton = document.getElementById('oneMoreStartingButton');
+            oneMoreStartingButton.style.display = 'block';
+            
+            // enable dropdowms
+            document.getElementById("player").disabled=false;
+
+            // Get a reference to the output div in the HTML
+            const outputElement = document.getElementById('output');
+
+            // Set the content of the output div to an empty string
+            outputElement.innerHTML = '';
+        }
+    </script>
+    <body>
+        <h1>Cows and Bulls: Guess the Number Game</h1>
+        <h2>You Guess the Computer's Number</h2>
+        <button id="startBtn" onclick="startGame()">Start Game</button>
+        <label hidden id="secret"></label>
+
+        <label id="lengthLabel">Choose a number length:</label>
+
+        <select id="length">
+            <option value='4' selected>4</option>
+            <option value='5'>5</option>
+            <option value='6'>6</option>
+        </select>
+        
+        <label id="rangeLabel">Choose a range of digits:</label>
+
+        <select name="cars" id="range">
+            <option value='6' selected>1 - 6</option>
+            <option value='7'>1 - 7</option>
+            <option value='8'>1 - 8</option>
+        </select>
+
+        <div id="labelsDiv"></div>
+        
+        <div id='guessDiv' class="form-group" style="display: none;">
+            <label for="guess">Guess:</label>
+            <input type="text" id="guess">
+            <button id="guessBtn" onclick="evaluation()">Submit</button>
+        </div>
+        <label id="result"></label>
+        <label id="errorLabel"></label>
+
+         <!-- Bottom part of the page -->
+        <h2>Computer Guesses Your Number</h2>
+        <button id="startingButton" onclick="compStartGame()">Start Game</button>
+            
+        <label id="numberLengthLabel">Choose a number length:</label>
+        <select id="numberLength">
+            <option value='4' selected>4</option>
+            <option value='5'>5</option>
+            <option value='6'>6</option>
+        </select>
+        
+        <label id="digitRangeLabel">Choose a range of digits:</label>
+
+        <select name="" id="digitRange">
+            <option value='6' selected>1 - 6</option>
+            <option value='7'>1 - 7</option>
+            <option value='8'>1 - 8</option>
+        </select>
+        <div id="computerGuess"></div>
+        
+        <div id='hitsDiv' class="form-group" style="display: none;">
+            <label for="hits">hits:</label>
+            <input type="text" id="hits">
+            <label for="perfectHits">perfect hits:</label>
+            <input type="text" id="perfectHits">
+            <button id="compHitsButton" onclick="evaluateGuess()">Submit</button>
+        </div>
+        <label id="compResults"></label>
+        <label id="hitsErrorLabel"></label>
+
+        <h2>Pick a Player to Beat the Computer</h2>
+        <button id="oneMoreStartingButton" onclick="playerStartGame()">Start Game</button>
+
+        <label id="playerLabel">Choose your player:</label>
+        <select id="player">
+            <option value='1'>Smart Player</option>
+            <option value='2' selected>Average Player</option>
+            <option value='3'>Random Player</option>
+        </select>
+
+        <div id="output"></div>
+
+        <button id="restartButton" onclick="restartGame()">Restart Game</button>
+    </body>
+</html>
