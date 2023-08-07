@@ -1,4 +1,3 @@
-# CowsAndBulls
 ## Game Description
 
 Cows and Bulls is a number guessing game that puts players' deduction and number-crunching abilities to the test. The game comprises two distinct roles: the Game Manager and the Player.
@@ -54,7 +53,9 @@ These results can give you some context to how well you are playing.
 
   
 
-Code: I developed this "Cows and Bulls" number-guessing game as a personal coding exercise to reinforce my understanding of JavaScript while learning the language. The project allowed me to practice various JavaScript concepts, such as event handling, DOM manipulation, and implementing game logic. I aimed to create an interactive and engaging game that users can enjoy while also challenging myself to build a functional application from scratch.
+## Code Description
+
+ I developed this "Cows and Bulls" number-guessing game as a personal coding exercise to reinforce my understanding of JavaScript while learning the language. The project allowed me to practice various JavaScript concepts, such as event handling, DOM manipulation, and implementing game logic. I aimed to create an interactive and engaging game that users can enjoy while also challenging myself to build a functional application from scratch.
 
 During the development process, I focused on writing clean and well-organized code to ensure readability and maintainability. I divided the functionality into separate functions, each responsible for specific tasks, which helped me to understand the flow of the game better. As I continue to learn and grow as a developer, I recognize that there is room for improvement, particularly in enhancing the visual aspects of the game. I plan to take a CSS class in the future to elevate the user experience by designing a visually appealing and user-friendly interface. Overall, this coding exercise has been a valuable learning experience, and I look forward to further refining and expanding my JavaScript skills in future projects.
 
