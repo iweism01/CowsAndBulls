@@ -15,12 +15,13 @@ To aid the Player in guessing the number, the Game Manager offers two types of f
 
 The Game Manager continues providing these clues after each guess the Player makes, helping the Player refine their attempts to guess the secret number.
 
-The Player: Equipped with the knowledge that the secret number consists of a specific number of digits within a specific range, the Player starts by making the initial guess. After each guess, the Game Manager offers feedback in the form of Cows and Bulls to aid the Player's pursuit.
+## *The Player*
+
+Equipped with the knowledge that the secret number consists of a specific number of digits within a specific range, the Player starts by making the initial guess. After each guess, the Game Manager offers feedback in the form of Cows and Bulls to aid the Player's pursuit.
 
 The Player's objective is to leverage this feedback to deduce the secret number in as little guesses as possible.. As the Player refines their guesses, they must employ logical reasoning and process of elimination to reveal the secret number's identity. The game proceeds with the Player making successive guesses and receiving feedback from the Game Manager until the Player has guessed the secret number correctly.
 
-—------------------------------------------------------------------------------------------------------------------
-
+—--------------------------------------------------------------------------------
 
 The game I have coded has 3 “game modes”:
 
@@ -39,11 +40,11 @@ Player: Computer (kinda…)**
 
 In this game mode, you do not need to guess a number, or report the number of hits and perfect hits after each guess. Instead, the computer will be playing itself, but you do have a few options for how you want the computer versus computer matchup to be played:
 
-Smart Player: This option ensures that the computer will make the smartest decisions in terms of which numbers to guess. This player selects the number from its remaining set of possible answers that has the most unique digits, efficiently reducing the possibilities with each guess.
+`Smart Player:` This option ensures that the computer will make the smartest decisions in terms of which numbers to guess. This player selects the number from its remaining set of possible answers that has the most unique digits, efficiently reducing the possibilities with each guess.
 
-Average Player: This option has the computer play less smartly, but still in an effective manner. This player selects the first number from the remaining number set, making sequential guesses without much strategy.
+`Average Player:` This option has the computer play less smartly, but still in an effective manner. This player selects the first number from the remaining number set, making sequential guesses without much strategy.
 
-Random Player: The random player relies on pure chance to make its guesses. It randomly selects a number from the remaining number set (never repeating guesses).
+`Random Player:` The random player relies on pure chance to make its guesses. It randomly selects a number from the remaining number set (never repeating guesses).
 
   
 
