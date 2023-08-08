@@ -65,20 +65,8 @@ During the development process, I focused on writing clean and well-organized co
 This is a table showing the different performance characteristics of the different players/strategies ….
 
   
-|  | Smart Player | 
-|--|--|
-| Average # of Guesses |4.686|
-| Smallest # of Guesses|2|
-| Largest # of Guesses |7|
-
-|  | Average Player | 
-|--|--|
-| Average # of Guesses |5.773|
-| Smallest # of Guesses|1|
-| Largest # of Guesses |9|
-
-|  | Random Player | 
-|--|--|
-| Average # of Guesses |646.758|
-| Smallest # of Guesses|5|
-| Largest # of Guesses |1296|
+|  | Smart Player | Average Player | Random Player |
+|--|--|--|--|
+| Average # of Guesses |4.686|5.773|646.758
+| Smallest # of Guesses|2|1|5
+| Largest # of Guesses |7|9|1296
