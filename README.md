@@ -1,6 +1,6 @@
 ## Game Description
 
-Cows and Bulls is a number guessing game that puts players' deduction and number-crunching abilities to the test. The game comprises two distinct roles: the Game Manager and the Player.
+Cows and Bulls is a number guessing game that puts players' deduction and number-crunching abilities to the test. The game comprises two distinct roles: the Game Manager and the Player. Click here to play: [CowsAndBullsGame](https://main.d1hwr2ihaefbou.amplifyapp.com/)
 
 ## *The Game Manager*
 
