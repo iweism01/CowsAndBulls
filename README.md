@@ -70,3 +70,8 @@ This is a table showing the different performance characteristics of the differe
 | Average # of Guesses |4.686|5.773|646.758
 | Smallest # of Guesses|2|1|5
 | Largest # of Guesses |7|9|1296
+
+
+## To-Do
+- Add special value for infinite number of actions
+
